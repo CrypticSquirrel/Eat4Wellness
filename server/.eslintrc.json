@@ -1,0 +1,25 @@
+{
+    "extends": ["airbnb", "prettier", "plugin:node/recommended"],
+    "plugins": ["prettier"],
+    "rules": {
+        "indent": ["error", 4],
+        "space-before-function-paren": 0,
+        "no-console": 0,
+        "prettier/prettier": [
+            "error",
+            {
+                "trailingComma": "es5",
+                "singleQuote": true,
+                "printWidth": 100,
+                "tabWidth": 4
+            }
+        ],
+        "no-unused-vars": [
+            1,
+            {
+                "ignoreSiblings": true,
+                "argsIgnorePattern": "res|next|^err"
+            }
+        ]
+    }
+}
