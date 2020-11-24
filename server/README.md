@@ -1,4 +1,4 @@
-# Project BetterFood's Server
+# BetterFood's Server Repository
 
 This README purpose is to help developers get their local developement environment up and running with this app's server. 
 
