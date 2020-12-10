@@ -3,6 +3,7 @@
 const express = require('express');
 const cors = require('cors');
 const auth = require('./auth');
+const logs = require('./log');
 const middlewares = require('./auth/middlewares');
 require('dotenv').config();
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use(middlewares.checkTokenSetUser);
 app.use('/auth', auth);
+app.use('/logs', logs);
 
 /* -------------------------------------- For Testing Only -------------------------------------- */
 
