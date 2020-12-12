@@ -6,19 +6,19 @@ const db = require('../db/connection');
 require('dotenv').config();
 
 const router = express.Router();
-const food = db.get('food');
-food.createIndex('food', { unique: true });
+const foods = db.get('foods');
+foods.createIndex('food', { unique: true });
 
 /* ----------------------------------------- Validation ----------------------------------------- */
 
 const schema = Joi.object({
-    food: Joi.string().alphanum().required(),
-    foodData: Joi.string().alphanum().required(),
+    foodName: Joi.string().alphanum().required(),
+    foodData: Joi.string().required(),
 });
 
 router.get('/', (req, res) => {
     res.json({
-        message: '',
+        message: 'here',
     });
 });
 
@@ -26,12 +26,14 @@ module.exports = router;
 
 /* ---------------------------------Route for creating new entry---------- ----------------------- */
 
+
 router.post('/addfood', (req, res, next) => {
     const { error, value } = schema.validate(req.body);
     if (error === undefined) {
-        food
+        foods
             .findOne({
-                food: value.food,
+                foodName: value.foodName,
+                foodData: value.foodData
             })
             .then((food) => {
                 if (food) {
@@ -41,18 +43,18 @@ router.post('/addfood', (req, res, next) => {
                     res.status(409);
                     next(duplicate);
                 } else{
-                    bcrypt.hash(value.foodData.trim(), 10, (err, hash) => {
+                   
                         const newFood = {
-                            food: value.food,
-                            foodData: hash,
+                            foodName: value.foodName,
+                            foodData: value.foodData,
                         };
-                        food.insert(newFood).then((insertedFood) => {
+                        foods.insert(newFood).then((insertedFood) => {
                             const jwtPayload = {
                                 token: insertedFood.foodData,
                             };
                             res.json(jwtPayload);
                         });
-                    });
+                    
                 }
             }); 
 
@@ -62,3 +64,29 @@ router.post('/addfood', (req, res, next) => {
         next(error);
     }
 });
+
+/* ---------------------------------Route for deleting an entry---------- ----------------------- */
+
+router.post('/deletefood', (req, res, next) => {
+    const { error, value } = schema.validate(req.body);
+    if (error === undefined) {
+    foods
+    .findOne({foodName: value.foodName}, function(err, result) {
+        if(result){
+            
+        
+            res.json({
+               message:("Deleted:" + " " + value.foodName)
+            });
+        
+                foods.remove({'foodName': value.foodName})
+
+        } 
+            else {
+                res.json({
+                    message: 'Food not found.',
+                });
+                
+            };
+        });
+    }});
