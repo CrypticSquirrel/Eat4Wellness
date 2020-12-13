@@ -24,6 +24,7 @@ const schema = Joi.object({
     address: Joi.string().required(),
     country: Joi.string().required(),
     state: Joi.string().required(),
+    city: Joi.string().required(),
     zip: Joi.string().alphanum().required(),
 });
 
@@ -60,6 +61,7 @@ router.post('/signup', (req, res, next) => {
                                 address: value.address,
                                 country: value.country,
                                 state: value.state,
+                                city: value.city,
                                 zip: value.zip,   
                         };
                         users.insert(newUser).then((insertedUser) => {
