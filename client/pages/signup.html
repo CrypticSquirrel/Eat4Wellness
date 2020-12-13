@@ -42,7 +42,6 @@
     </style>
 
     
-    <!-- Custom styles for this template -->
     <link href="../styles/signup.css" rel="stylesheet">
   </head>
   <body class="bg-light">
@@ -50,8 +49,8 @@
 <div class="container">
   <main>
     <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4" src="../image/signup00.jpg" alt="" width="350" height="225">
-      <h2>Lettuce Help You</h2>
+      <img class="d-block mx-auto mb-4" src="../image/signup00.jpg" alt="" width="400" height="275">
+      <h2>Lettuce Help You!</h2>
       <p class="lead"> HEAL THY SELF ~ HEALTHY SELF</p>
     </div>
 
@@ -73,7 +72,7 @@
             <div>
               <h6 class="my-0">Benifits Include:</h6>
               <small class="text-muted">You will be pear-ed with a personal coach that will 
-                help you find a perfectly balenced nutritional diet specifically for you</small>
+                help you find a perfectly balenced nutritional diet specifically for you!</small>
             </div>
           </li>
           <li class="list-group-item d-flex justify-content-between lh-sm">
@@ -196,7 +195,13 @@
               </div>
             </div>
 
-           
+            <div class="col-12">
+              <label for="city" class="form-label">City</label>
+              <input type="text" class="form-control" id="city" placeholder=" Berrien Springs" required>
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
 
             <div class="col-md-5">
               <label for="country" class="form-label">Country</label>
@@ -213,7 +218,7 @@
               <label for="state" class="form-label">State</label>
               <select class="form-select" id="state" required>
                 <option value="">Choose...</option>
-                <option>California</option>
+                <option>Michigan</option>
               </select>
               <div class="invalid-feedback">
                 Please provide a valid state.
@@ -232,13 +237,13 @@
           <hr class="my-4">
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="same-address">
-            <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
+            <input type="checkbox" class="form-check-input" id="Member">
+            <label class="form-check-label" for="Member>">Join as Member</label>
           </div>
 
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="save-info">
-            <label class="form-check-label" for="save-info">Save this information for next time</label>
+            <input type="checkbox" class="form-check-input" id="Coach">
+            <label class="form-check-label" for="Coach">Join as Coach</label>
           </div>
 
           <hr class="my-4">
@@ -254,14 +259,18 @@
 
   </main>
 
+    
   <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">&copy; Eat4Wellness</p>
+    <!--  
     <ul class="list-inline">
       <li class="list-inline-item"><a href="#">Privacy</a></li>
       <li class="list-inline-item"><a href="#">Terms</a></li>
       <li class="list-inline-item"><a href="#">Support</a></li>
     </ul>
+  -->
   </footer>
+  
 </div>
 
 
