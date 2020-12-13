@@ -7,8 +7,27 @@ const valueEl = document.getElementById('filter-value');
 /* ----------------------------- Table Generator ---------------------------- */
 
 var tableData = [
-    {id:1, name:"Billy Bob", age:"12", gender:"male", height:1, col:"red", dob:"", cheese:1},
-    {id:2, name:"Mary May", age:"1", gender:"female", height:2, col:"blue", dob:"14/05/1982", cheese:true},
+    {id:1, name:"Bagel", gender:"140 cal" },
+    {id:2, name:"Cereal", gender:"135 cal"},
+    {id:3, name:"Macaroni", gender:"238 cal"},
+    {id:4, name:"apple", gender:"80 cal"},
+    {id:5, name:"Banana", gender:"110 cal"},
+    {id:6, name:"Lime", gender:"20 cal"},
+    {id:7, name:"Ground beef", gender:"289 cal"},
+    {id:8, name:"Chicken", gender:"205 cal"},
+    {id:9, name:"Pork Loin", gender:"190 cal"},
+    {id:10, name:"Turkey", gender:"170 cal"},
+    {id:11, name:"Bacon", gender:"552 cal"},
+    {id:12, name:"pasta", gender:"330 cal"},
+    {id:13, name:"Potato", gender:"210 cal"},
+    {id:14, name:"Cereal", gender:"135 cal"},
+    {id:15, name:"Cereal", gender:"135 cal"},
+    {id:16, name:"Cereal", gender:"135 cal"},
+    {id:17, name:"Cereal", gender:"135 cal"},
+    {id:18, name:"Cereal", gender:"135 cal"},
+    {id:19, name:"Cereal", gender:"135 cal"},
+    {id:20, name:"Cereal", gender:"135 cal"},
+    {id:21, name:"Cereal", gender:"135 cal"},
 ]
 
 // create Tabulator on DOM element with id "example-table"
@@ -17,12 +36,8 @@ const table = new Tabulator('#example-table', {
     layout: 'fitColumns',
     columns:[
         {title:"Name", field:"name"},
-        {title:"Age", field:"age"},
         {title:"Gender", field:"gender"},
-        {title:"Height", field:"height"},
-        {title:"Favourite Color", field:"col"},
-        {title:"Date Of Birth", field:"dob"},
-        {title:"Cheese Preference", field:"cheese"},
+        ,
     ],
 });
 
