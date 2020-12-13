@@ -3,6 +3,8 @@
 const express = require('express');
 const cors = require('cors');
 const auth = require('./auth');
+const logs = require('./log/log');
+const foods = require('./food/food');
 const middlewares = require('./auth/middlewares');
 require('dotenv').config();
 
@@ -15,6 +17,8 @@ app.use(cors());
 app.use(express.json());
 app.use(middlewares.checkTokenSetUser);
 app.use('/auth', auth);
+app.use('/logs', logs);
+app.use('/foods', foods);
 
 /* -------------------------------------- For Testing Only -------------------------------------- */
 
