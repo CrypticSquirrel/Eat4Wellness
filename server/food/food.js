@@ -33,7 +33,6 @@ router.post('/addfood', (req, res, next) => {
         foods
             .findOne({
                 foodName: value.foodName,
-                foodData: value.foodData
             })
             .then((food) => {
                 if (food) {

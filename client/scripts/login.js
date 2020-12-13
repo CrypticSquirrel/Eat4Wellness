@@ -10,8 +10,8 @@ $(document).ready(function () {
 /* ---------------------------------------- Handles Login --------------------------------------- */
 
 function login() {
-    var username = $('#username').val();
-    var password = $('#pwd').val();
+    var username = $('#inputUsername').val();
+    var password = $('#inputPassword').val();
 
     const body = {
         username,
@@ -21,7 +21,6 @@ function login() {
 	/**
 	 * Makes a POST request to server @localhost:3000/auth/login with login info. 
 	 * Returns a token to store in local memory. This will be their identifier in our site.
-	 * @todo redirect user when successful login
 	 */
     fetch(LOGIN_URL, {
         method: 'POST',
@@ -39,7 +38,7 @@ function login() {
     }).then((result) => {
         console.log(`token: ${result.token}`);
         localStorage.token = result.token;
-        // window.location.href = "url/to/homepage";
+        window.location.href = "../pages/landing.html";
     }).catch((error) => {
         console.log(`error: ${error}`);
         alert(error.message);
