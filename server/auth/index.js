@@ -16,7 +16,7 @@ users.createIndex('username', { unique: true });
 
 const schema = Joi.object({
     username: Joi.string().alphanum().min(2).max(30).required(),
-    password: Joi.string().trim().min(4).required(),
+    password: Joi.string().alphanum().min(4).max(20).required(),
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
     email: Joi.string().required(),
@@ -50,10 +50,10 @@ router.post('/signup', (req, res, next) => {
                     res.status(409);
                     next(duplicate);
                 } else {
-                    bcrypt.hash(value.password.trim(), 10, (err, hash) => {
+                    
                         const newUser = {
                                 username: value.username,
-                                password: hash,
+                                password: value.password,
                                 firstName: value.firstName,
                                 lastName: value.lastName,
                                 email: value.email,
@@ -63,13 +63,7 @@ router.post('/signup', (req, res, next) => {
                                 city: value.city,
                                 zip: value.zip,   
                         };
-                        users.insert(newUser).then((insertedUser) => {
-                            const jwtPayload = {
-                                token: insertedUser.password,
-                            };
-                            res.json(jwtPayload);
-                        });
-                    });
+                     
                 }
             });
     } else {
