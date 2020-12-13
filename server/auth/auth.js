@@ -3,7 +3,8 @@
 
 const express = require('express');
 const Joi = require('@hapi/joi');
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');     
+const bcrypt = require('bcrypt');  
 const db = require('../db/connection');
 require('dotenv').config();
 
@@ -15,7 +16,7 @@ users.createIndex('username', { unique: true });
 
 const schema = Joi.object({
     username: Joi.string().alphanum().min(2).max(30).required(),
-    password: Joi.string().min(4).max(20).required(),
+    password: Joi.string().alphanum().min(4).required(),
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
     email: Joi.string().required(),
@@ -62,6 +63,12 @@ router.post('/signup', (req, res, next) => {
                                 city: value.city,
                                 zip: value.zip,     
                         };
+                        users.insert(newUser).then((insertedUser) => {
+                            const jwtPayload = {
+                                token: insertedUser.username,
+                            };
+                            res.json(jwtPayload);
+                        });
                      
                 }
             });
@@ -83,8 +90,14 @@ router.post('/login', (req, res, next) => {
             })
             .then((user) => {
                 if (user) {
-                    compare(value.password, user.password).then((result) => {
+                    bcrypt.compare(value.password, user.password).then((result) => {
                         if (result) {
+
+                            res.json({
+                                message: 'here',
+                            });
+
+
                             const payload = {
                                 _id: user._id,
                                 username: user.username,
