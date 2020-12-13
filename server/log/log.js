@@ -97,3 +97,33 @@ router.post('/deletelog', (req, res, next) => {
             };
         });
     }});
+
+        /* ---------------------------------Route for editing an entry---------- ----------------------- */
+
+router.post('/editlog', (req, res, next) => {
+    const { error, value } = schema.validate(req.body);
+    if (error === undefined) {
+    logs
+    .findOne({logDate: value.logDate}, function(err, result) {
+        if(result){
+            
+        
+            res.json({
+               message:("Edited log from:" + " " + value.logDate)
+            });
+        
+                logs.update(
+                    {'logDate': value.logDate},
+                    {$set:{"logData": value.logData}
+                })
+
+        } 
+            else {
+                res.json({
+                    message: 'Log entry not found.',
+                });
+                
+            };
+        });    
+    
+}});

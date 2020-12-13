@@ -90,3 +90,33 @@ router.post('/deletefood', (req, res, next) => {
             };
         });
     }});
+
+    /* ---------------------------------Route for editing an entry---------- ----------------------- */
+
+router.post('/editfood', (req, res, next) => {
+    const { error, value } = schema.validate(req.body);
+    if (error === undefined) {
+    foods
+    .findOne({foodName: value.foodName}, function(err, result) {
+        if(result){
+            
+        
+            res.json({
+               message:("Edited:" + " " + value.foodName)
+            });
+        
+                foods.update(
+                    {'foodName': value.foodName},
+                    {$set:{"foodData": value.foodData}
+                })
+
+        } 
+            else {
+                res.json({
+                    message: 'Food not found.',
+                });
+                
+            };
+        });    
+    
+}});
