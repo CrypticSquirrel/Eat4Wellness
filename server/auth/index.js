@@ -17,7 +17,6 @@ users.createIndex('username', { unique: true });
 const schema = Joi.object({
     username: Joi.string().alphanum().min(2).max(30).required(),
     password: Joi.string().trim().min(4).required(),
-    repeat_password: Joi.ref('password'),
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
     email: Joi.string().required(),
