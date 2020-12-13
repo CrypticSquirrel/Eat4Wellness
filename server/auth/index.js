@@ -18,6 +18,13 @@ const schema = Joi.object({
     username: Joi.string().alphanum().min(2).max(30).required(),
     password: Joi.string().trim().min(4).required(),
     repeat_password: Joi.ref('password'),
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
+    email: Joi.string().required(),
+    address: Joi.string().required(),
+    country: Joi.string().required(),
+    state: Joi.string().required(),
+    zip: Joi.string().alphanum().required(),
 });
 
 router.get('/', (req, res) => {
@@ -45,8 +52,15 @@ router.post('/signup', (req, res, next) => {
                 } else {
                     bcrypt.hash(value.password.trim(), 10, (err, hash) => {
                         const newUser = {
-                            username: value.username,
-                            password: hash,
+                                username: value.username,
+                                password: hash,
+                                firstName: value.firstName,
+                                lastName: value.lastName,
+                                email: value.email,
+                                address: value.address,
+                                country: value.country,
+                                state: value.state,
+                                zip: value.zip,   
                         };
                         users.insert(newUser).then((insertedUser) => {
                             const jwtPayload = {
