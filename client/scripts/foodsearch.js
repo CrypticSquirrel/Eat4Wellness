@@ -20,14 +20,14 @@ var tableData = [
     {id:11, name:"Bacon", gender:"552 cal"},
     {id:12, name:"pasta", gender:"330 cal"},
     {id:13, name:"Potato", gender:"210 cal"},
-    {id:14, name:"Cereal", gender:"135 cal"},
-    {id:15, name:"Cereal", gender:"135 cal"},
-    {id:16, name:"Cereal", gender:"135 cal"},
-    {id:17, name:"Cereal", gender:"135 cal"},
-    {id:18, name:"Cereal", gender:"135 cal"},
-    {id:19, name:"Cereal", gender:"135 cal"},
-    {id:20, name:"Cereal", gender:"135 cal"},
-    {id:21, name:"Cereal", gender:"135 cal"},
+    {id:14, name:"Rice", gender:"200 cal"},
+    {id:15, name:"Crab Fish", gender:"200 cal"},
+    {id:16, name:"Cod fresh", gender:"150 cal"},
+    {id:17, name:"Duck Roast", gender:"400 cal"},
+    {id:18, name:"Lobster boiled", gender:"200 cal"},
+    {id:19, name:"Luncheon meat", gender:"300 cal"},
+    {id:20, name:"Big Mac", gender:"540 cal"},
+    {id:21, name:"French Fries", gender:"222-365 cal"},
 ]
 
 // create Tabulator on DOM element with id "example-table"
