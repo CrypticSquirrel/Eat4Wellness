@@ -10,7 +10,7 @@ To provide an example of how it's like to work on a modern agile development tea
 We achieved this with: 
 1. [A Kanban Board](https://github.com/CrypticSquirrel/Eat4Wellness/projects/1)
 2. [Issues/Cards](https://github.com/CrypticSquirrel/Eat4Wellness/issues/10)
-3. Group lead acting like a Scum Leader holding everyone accountable for his/her assigned issues
+3. Group lead acting like a Scum leader holding everyone accountable for his/her assigned issues
 4. Active collaboration between all participants 
 5. QA testing and code reviews
 6. Following the MVC model
@@ -40,4 +40,4 @@ This project was made possible from the hard work of the following individuals:
 License 
 --
 
-MIT License, Enjoy!
+MIT license, enjoy!
