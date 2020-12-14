@@ -25,7 +25,8 @@ Submission Requirements
 - [Project Requirements](https://github.com/CrypticSquirrel/Eat4Wellness/issues/7)
 - [Clientside UI](https://github.com/CrypticSquirrel/Eat4Wellness/tree/master/client)
 - [Backend Server](https://github.com/CrypticSquirrel/Eat4Wellness/tree/master/server)
-- Demo...
+- [UI Demo](https://crypticsquirrel.github.io/Eat4Wellness/)
+- Video
 
 
 Acknowledgement
