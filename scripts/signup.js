@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#signup').click(function (event) {
         event.preventDefault();
-        login();
+        signup();
     });
 });
 
