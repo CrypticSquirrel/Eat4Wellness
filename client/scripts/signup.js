@@ -1,30 +1,35 @@
 const SIGNUP_URL = 'http://localhost:3000/auth/signup';
 
-$(document).ready(function () {
-    $('#signup').click(function (event) {
-        event.preventDefault();
-        signup();
-    });
-});
-
 /* --------------------------------------- Handles Signup --------------------------------------- */
 
 function signup() {
-    const username = $('#uname').val();
-    const password = $('#pwd').val();
-    const confirmpwd = $('#cpwd').val();
+    const firstName = $('#firstName').val();
+    const lastName = $('#lastName').val();
+    const username = $('#username').val();
+    const email = $('#email').val();
+    const address = $('#address').val();
+    const city = $('#city').val();
+    const country = $('#country').val();
+    const state = $('#state').val();
+    const zip = $('#zip').val();
+    const password = $('#password').val();
 
     const body = {
+        firstName,
+        lastName,
         username,
-        password,
-        repeat_password: confirmpwd,
+        email,
+        address,
+        city,
+        country,
+        state,
+        zip,
+        password
     };
 
     /**
 	 * Makes a POST request to server @localhost:3000/auth/signup with signup info. 
 	 * Redirects user to login page when signup is successful. Alert if error.
-     * 
-     * TODO: Modify code to redirect to home page when created. Commented out right now.
 	 */
     fetch(SIGNUP_URL, {
         method: 'POST',
@@ -40,9 +45,7 @@ function signup() {
             throw new Error(error.message);
         });
     }).then((result) => {
-        // window.location.href = '../index.html';
-        console.log(`token: ${result.token}`);
-        localStorage.token = result.token;
+        window.location.href = '../index.html';
     }).catch((error) => {
         this.errorMessage = error.message;
         console.log(`error: ${error}`);
