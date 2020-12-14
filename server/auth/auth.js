@@ -17,14 +17,14 @@ users.createIndex('username', { unique: true });
 const schema = Joi.object({
     username: Joi.string().alphanum().min(2).max(30).required(),
     password: Joi.string().alphanum().min(4).required(),
-    firstName: Joi.string().required(),
-    lastName: Joi.string().required(),
-    email: Joi.string().required(),
-    address: Joi.string().required(),
-    country: Joi.string().required(),
-    state: Joi.string().required(),
-    city: Joi.string().required(),
-    zip: Joi.string().alphanum().required(),
+    firstName: Joi.string(),
+    lastName: Joi.string(),
+    email: Joi.string(),
+    address: Joi.string(),
+    country: Joi.string(),
+    state: Joi.string(),
+    city: Joi.string(),
+    zip: Joi.string().alphanum(),
 });
 
 router.get('/', (req, res) => {
@@ -83,24 +83,22 @@ router.post('/signup', (req, res, next) => {
 router.post('/login', (req, res, next) => {
     const loginError = new Error('Unable to login');
     const { error, value } = schema.validate(req.body);
+    
+    
     if (error === undefined) {
         users
-            .findOne({
-                username: value.username,
-            })
-            .then((user) => {
-                if (user) {
-                    bcrypt.compare(value.password, user.password).then((result) => {
+            .findOne({username: value.username}, function(err, result) {
+                if (result) {
+
+                    
+
+                 users.findOne({password: value.password}).then((result) => {
                         if (result) {
 
-                            res.json({
-                                message: 'here',
-                            });
-
-
+                           
                             const payload = {
-                                _id: user._id,
-                                username: user.username,
+                                _id: users._id,
+                                username: users.username,
                             };
                             jwt.sign(
                                 payload,
@@ -122,11 +120,16 @@ router.post('/login', (req, res, next) => {
                             next(loginError);
                         }
                     });
-                } else {
-                    res.status(401);
-                    next(loginError);
-                }
-            });
+                
+            }
+            
+            else {
+                res.status(401);
+                next(loginError);
+            }})
+     
+            
+
     } else {
         res.status(401);
         next(loginError);
