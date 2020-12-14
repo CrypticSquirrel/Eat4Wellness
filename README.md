@@ -2,6 +2,9 @@
 
 BetterFood is an application for members to track their diets and connect to coaches in order to help them achieve their dietary goals. This application is sponsored by and developed for Eat4Wellness, a fictional company made up by my teacher. 
 
+<img src="https://user-images.githubusercontent.com/61712821/101715984-793e4300-3a6a-11eb-86c6-e24e58a4ab3d.png" alt="sign up" height="240"> <img src="https://user-images.githubusercontent.com/72583810/101764367-ff2fad80-3aad-11eb-89fd-c4c25cc4457e.png" alt="sign up" height="240">
+
+
 Project Objective
 -- 
 
