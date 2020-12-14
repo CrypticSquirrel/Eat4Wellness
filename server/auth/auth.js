@@ -67,6 +67,7 @@ router.post('/signup', (req, res, next) => {
                             const jwtPayload = {
                                 token: insertedUser.username,
                             };
+                            console.log(jwtPayload)
                             res.json(jwtPayload);
                         });
                      
@@ -82,6 +83,7 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
     const loginError = new Error('Unable to login');
+    console.log(req.body)
     const { error, value } = schema.validate(req.body);
     
     

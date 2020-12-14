@@ -38,7 +38,7 @@ function login() {
     }).then((result) => {
         console.log(`token: ${result.token}`);
         localStorage.token = result.token;
-        window.location.href = "../pages/landing.html";
+        window.location.href = "/client/pages/landing.html";
     }).catch((error) => {
         console.log(`error: ${error}`);
         alert(error.message);

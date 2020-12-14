@@ -1,12 +1,5 @@
 const SIGNUP_URL = 'http://localhost:3000/auth/signup';
 
-$(document).ready(function () {
-    $('#signup').click(function (event) {
-        event.preventDefault();
-        signup();
-    });
-});
-
 /* --------------------------------------- Handles Signup --------------------------------------- */
 
 function signup() {
@@ -19,7 +12,7 @@ function signup() {
     const country = $('#country').val();
     const state = $('#state').val();
     const zip = $('#zip').val();
-    const zip = $('#password').val();
+    const password = $('#password').val();
 
     const body = {
         firstName,

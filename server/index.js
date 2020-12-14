@@ -15,7 +15,6 @@ const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(middlewares.checkTokenSetUser);
 app.use('/auth', auth);
 app.use('/logs', logs);
 app.use('/foods', foods);
