@@ -12,6 +12,7 @@ logs.createIndex('log', { unique: true });
 /* ----------------------------------------- Validation ----------------------------------------- */
 
 const schema = Joi.object({
+    logName: Joi.string().required(),
     logDate: Joi.date().required(),
     logData: Joi.string().required(),
 });
@@ -40,19 +41,19 @@ router.post('/addlog', (req, res, next) => {
     if (error === undefined) {
         logs
             .findOne({
-                logDate: value.logDate,
-                logData: value.logData,
+                logName: value.logName,
             })
             .then((log) => {
                 if (log) {
                     const duplicate = new Error(
-                        'A log already exists for that day.'
+                        'A log already exists with that name.'
                     );
                     res.status(409);
                     next(duplicate);
                 } else{
                     
                         const newLog = {
+                            logName: value.logName,
                             logDate: value.logDate,
                             logData: value.logData,
                         };
@@ -78,15 +79,15 @@ router.post('/deletelog', (req, res, next) => {
     const { error, value } = schema.validate(req.body);
     if (error === undefined) {
     logs
-    .findOne({logDate: value.logDate}, function(err, result) {
+    .findOne({logName: value.logName}, function(err, result) {
         if(result){
             
         
             res.json({
-               message:("Deleted log from:" + " " + value.logDate)
+               message:("Deleted log called:" + " " + value.logName)
             });
         
-                logs.remove({'logDate': value.logDate})
+                logs.remove({'logName': value.logName})
 
         } 
             else {
@@ -104,16 +105,16 @@ router.post('/editlog', (req, res, next) => {
     const { error, value } = schema.validate(req.body);
     if (error === undefined) {
     logs
-    .findOne({logDate: value.logDate}, function(err, result) {
+    .findOne({logName: value.logName}, function(err, result) {
         if(result){
             
         
             res.json({
-               message:("Edited log from:" + " " + value.logDate)
+               message:("Edited log called:" + " " + value.logName)
             });
         
                 logs.update(
-                    {'logDate': value.logDate},
+                    {'logName': value.logName},
                     {$set:{"logData": value.logData}
                 })
 

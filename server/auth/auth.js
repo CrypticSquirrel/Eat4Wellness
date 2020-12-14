@@ -3,8 +3,8 @@
 
 const express = require('express');
 const Joi = require('@hapi/joi');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');     
+const bcrypt = require('bcrypt');  
 const db = require('../db/connection');
 require('dotenv').config();
 
@@ -16,8 +16,15 @@ users.createIndex('username', { unique: true });
 
 const schema = Joi.object({
     username: Joi.string().alphanum().min(2).max(30).required(),
-    password: Joi.string().trim().min(4).required(),
-    repeat_password: Joi.ref('password'),
+    password: Joi.string().alphanum().min(4).required(),
+    firstName: Joi.string(),
+    lastName: Joi.string(),
+    email: Joi.string(),
+    address: Joi.string(),
+    country: Joi.string(),
+    state: Joi.string(),
+    city: Joi.string(),
+    zip: Joi.string().alphanum(),
 });
 
 router.get('/', (req, res) => {
@@ -26,14 +33,14 @@ router.get('/', (req, res) => {
     });
 });
 
-/* ------------------------------------ Route for singing up ------------------------------------ */
+/* ------------------------------------ Route for signing up ------------------------------------ */
 
 router.post('/signup', (req, res, next) => {
     const { error, value } = schema.validate(req.body);
     if (error === undefined) {
         users
             .findOne({
-                username: value.username,
+                username: value.username,   
             })
             .then((user) => {
                 if (user) {
@@ -43,18 +50,26 @@ router.post('/signup', (req, res, next) => {
                     res.status(409);
                     next(duplicate);
                 } else {
-                    bcrypt.hash(value.password.trim(), 10, (err, hash) => {
+                    
                         const newUser = {
-                            username: value.username,
-                            password: hash,
+                                username: value.username,
+                                password: value.password,
+                                firstName: value.firstName,
+                                lastName: value.lastName,
+                                email: value.email,
+                                address: value.address,
+                                country: value.country,
+                                state: value.state,
+                                city: value.city,
+                                zip: value.zip,     
                         };
                         users.insert(newUser).then((insertedUser) => {
                             const jwtPayload = {
-                                token: insertedUser.password,
+                                token: insertedUser.username,
                             };
                             res.json(jwtPayload);
                         });
-                    });
+                     
                 }
             });
     } else {
@@ -68,18 +83,22 @@ router.post('/signup', (req, res, next) => {
 router.post('/login', (req, res, next) => {
     const loginError = new Error('Unable to login');
     const { error, value } = schema.validate(req.body);
+    
+    
     if (error === undefined) {
         users
-            .findOne({
-                username: value.username,
-            })
-            .then((user) => {
-                if (user) {
-                    bcrypt.compare(value.password, user.password).then((result) => {
+            .findOne({username: value.username}, function(err, result) {
+                if (result) {
+
+                    
+
+                 users.findOne({password: value.password}).then((result) => {
                         if (result) {
+
+                           
                             const payload = {
-                                _id: user._id,
-                                username: user.username,
+                                _id: users._id,
+                                username: users.username,
                             };
                             jwt.sign(
                                 payload,
@@ -101,11 +120,16 @@ router.post('/login', (req, res, next) => {
                             next(loginError);
                         }
                     });
-                } else {
-                    res.status(401);
-                    next(loginError);
-                }
-            });
+                
+            }
+            
+            else {
+                res.status(401);
+                next(loginError);
+            }})
+     
+            
+
     } else {
         res.status(401);
         next(loginError);

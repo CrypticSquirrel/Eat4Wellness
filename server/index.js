@@ -2,7 +2,7 @@
 
 const express = require('express');
 const cors = require('cors');
-const auth = require('./auth');
+const auth = require('./auth/auth');
 const logs = require('./log/log');
 const foods = require('./food/food');
 const middlewares = require('./auth/middlewares');
