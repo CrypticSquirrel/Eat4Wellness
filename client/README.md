@@ -1,6 +1,6 @@
 # BetterFood's Client Repository
 
-This README purpose is to help developers get their local developement environment up and running with this app's client. It was created for VSCode.
+This README purpose is to help developers get their local developement environment up and running with this app's client-side code. It was created for VSCode.
 
 Running Front-End
 --
