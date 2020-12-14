@@ -10,5 +10,5 @@ $(document).ready(function () {
 /* ---------------------------------------- Handles Login --------------------------------------- */
 
 function login() {
-    window.location.href = "/client/pages/landing.html";
+    window.location.href = "/pages/landing.html";
 }
